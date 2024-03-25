@@ -8,7 +8,8 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    week = ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)
+    @books = Book.includes(:favorites).sort_by { |book| -book.favorites.where(created_at: week).count }
     @book = Book.new
   end
 
@@ -55,5 +56,7 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
+
+
 
 end
