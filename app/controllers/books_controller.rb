@@ -5,7 +5,10 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = User.find(@book.user_id)
     @book_comment = BookComment.new
-    @book.view_counts.create
+
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
 
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)

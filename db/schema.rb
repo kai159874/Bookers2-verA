@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2024_03_27_041122) do
 
   create_table "view_counts", force: :cascade do |t|
     t.integer "book_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
