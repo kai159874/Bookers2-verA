@@ -1,0 +1,15 @@
+<% @entries.each do |e| %>
+  <% if current_user.id != e.user.id %>
+    <h1><%= e.user.name %>さんとのチャット</h1>
+  <% end %>
+<% end %>
+<div class="container">
+  <div id="direct_messages">
+    <%= render "message", messages: @messages %>
+  </div>
+</div>
+
+<%= form_with model: @message do |f| %>
+<%= f.hidden_field :room_id, value: @room.id %>
+<%= f.text_field :body, autofocus: true, id: "body" %>
+<% end %>
