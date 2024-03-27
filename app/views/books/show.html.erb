@@ -29,7 +29,7 @@
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
-          <td>閲覧数 <%= @vcounts.count %></td>
+          <td>閲覧数 <%= @book.view_counts.count %></td>
         </tr>
         <table id="comments-<%= @book.id %>">
           <%= render "book_comments/comments", book: @book %>

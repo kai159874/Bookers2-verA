@@ -5,9 +5,8 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = User.find(@book.user_id)
     @book_comment = BookComment.new
-    @vcount = @book.view_counts.create
-    @vcounts = ViewCount.where(book_id: @book.id)
-    
+    @book.view_counts.create
+
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
